@@ -6,13 +6,13 @@ describe Deposit do
 	subject(:deposit_two){ described_class.new(amount: 2) }
 
 	before do
-		allow(Date).to receive(:today).and_return(:todays_date)
+		allow(DateTime).to receive(:now).and_return(:this_moment)
 	end
 
 	context 'On initialization' do
 
-		it 'stores the current date' do
-			expect(deposit_one.date).to eq :todays_date 
+		it 'stores the current date and time' do
+			expect(deposit_one.date).to eq :this_moment
 		end
 
 		it 'stores the amount passed in' do
