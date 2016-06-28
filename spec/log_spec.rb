@@ -11,7 +11,7 @@ describe Log do
 		
 		it 'adds a hash to the logged array with all the details passed in' do
 			log.store(transaction_date,transaction_amount,balance_now)
-			expect(log.show).to eq [{date: transaction_date, credit: true, debit: false, amount: transaction_amount}]
+			expect(log.show).to eq [{date: transaction_date, credit: true, debit: false, amount: transaction_amount, balance: balance_now}]
 		end
 	end
 
