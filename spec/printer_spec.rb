@@ -11,6 +11,9 @@ describe Printer do
 			match = printout =~ /date \|\| credit \|\| debit \|\| balance/
 			expect(match).to eq 0
 		end
+		it 'adds the values in each hash to the printout on new lines' do
+			
+		end
 	end
 
 end
