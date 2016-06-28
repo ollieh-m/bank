@@ -1,3 +1,5 @@
+require 'date'
+
 class Deposit
 	
 	attr_reader :date, :amount

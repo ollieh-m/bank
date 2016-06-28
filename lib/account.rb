@@ -1,4 +1,4 @@
-require 'balance'
+require_relative 'balance.rb'
 
 class Account
 
