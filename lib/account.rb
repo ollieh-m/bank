@@ -9,21 +9,10 @@ class Account
 	end
 
 	def transaction(deposit_or_withdrawal)
-		update_balance(deposit_or_withdrawal.amount)
-		update_log(deposit_or_withdrawal)
-	end
-
-	private
-
-	def update_balance(amount)
+		date = deposit_or_withdrawal.date
+		amount = deposit_or_withdrawal.amount
 		@balance.update(amount)
-	end
-
-	def update_log(object)
-		date = object.date
-		type = object.amount > 0 ? :credit : :debit
-		amount = object.amount > 0 ? object.amount : object.amount * -1
-		@log.store(date,type,amount,@balance.now)
+		@log.store(date,amount,@balance.now)
 	end
 
 end

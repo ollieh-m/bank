@@ -4,9 +4,12 @@ class Log
 		@log = []
 	end
 
-	def store(date,type,amount,balance)
-		@log.push({date: date, credit: false, debit: false, amount: amount, balance: balance})
-		type == :credit ? @log.last[:credit] = true : @log.last[:debit] = true
+	def store(date,amount,balance)
+		if amount > 0
+			@log.push({date: date, credit: amount, debit: 0, balance: balance})
+		elsif amount < 0
+			@log.push({date: date, credit: 0, debit: amount * -1, balance: balance})
+		end
 	end
 
 	def show
