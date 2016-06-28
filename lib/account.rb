@@ -9,10 +9,8 @@ class Account
 	end
 
 	def transaction(deposit_or_withdrawal)
-		date = deposit_or_withdrawal.date
-		amount = deposit_or_withdrawal.amount
-		@balance.update(amount)
-		@log.store(date,amount,@balance.now)
+		@balance.update(deposit_or_withdrawal.amount)
+		@log.store(deposit_or_withdrawal,@balance.now)
 	end
 
 end

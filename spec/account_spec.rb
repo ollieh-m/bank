@@ -6,8 +6,8 @@ describe Account do
 
 	let(:balance){ double(:balance, update: nil, now: :dummy_balance)}
 	
-	let(:deposit){ double(:deposit, date: :dummy_date, amount: 1) }
-	let(:withdrawal){ double(:withdrawal, date: :dummy_date, amount: -1) }
+	let(:deposit){ double(:transaction, amount: 1) }
+	let(:withdrawal){ double(:transaction, amount: -1) }
 
 	subject(:account){described_class.new(balance,log)}
 
@@ -26,13 +26,9 @@ describe Account do
 		end
 
 		context 'and storing it in the log' do
-			it '- instructs the log to store deposit date, type, amount and new balance' do
+			it '- instructs the log to store transaction and new balance' do
 				account.transaction(deposit)
-				expect(log).to have_received(:store).with(:dummy_date,1,:dummy_balance)
-			end
-			it '- instructs the log to store withdrawal date, type, amount and new balance' do
-				account.transaction(withdrawal)
-				expect(log).to have_received(:store).with(:dummy_date,-1,:dummy_balance)
+				expect(log).to have_received(:store).with(deposit,:dummy_balance)
 			end
 		end
 

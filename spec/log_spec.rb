@@ -17,7 +17,7 @@ describe Log do
 		end
 
 		it 'adds a hash to the logged array with all the withdrawal details passed in' do
-			log.store(deposit,balance_now)
+			log.store(withdrawal,balance_now)
 			expect(log.show).to eq [{date: :dummy_date, credit: 0, debit: 5, balance: balance_now}]
 		end
 
