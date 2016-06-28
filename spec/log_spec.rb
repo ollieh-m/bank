@@ -4,23 +4,27 @@ describe Log do
 
 	let(:deposit){ double(:transaction, date: :dummy_date, amount: 5)}
 	let(:withdrawal){ double(:transaction, date: :dummy_date, amount: -5)}
-	
-	let(:balance_now){ 10 }
 
 	subject(:log){ described_class.new }
 
 	context '#store' do
-		
-		it 'adds a hash to the logged array with all the deposit details passed in' do
-			log.store(deposit,balance_now)
-			expect(log.show).to eq [{transaction: deposit, balance: balance_now}]
+		it 'adds a transaction to the log' do
+			log.store(deposit)
+			expect(log.show).to eq [deposit]
 		end
-
-		it 'adds a hash to the logged array with all the withdrawal details passed in' do
-			log.store(withdrawal,balance_now)
-			expect(log.show).to eq [{transaction: withdrawal, balance: balance_now}]
+		it 'adds a second transaction to the log after the first' do
+			log.store(deposit)
+			log.store(withdrawal)
+			expect(log.show).to eq [deposit,withdrawal]
 		end
+	end
 
+	context '#calculate_balances' do
+		it 'puts the balance for each transaction in an array of transactions' do
+			log.store(deposit)
+			log.store(withdrawal)
+			expect(log.calculate_balances).to eq [{transaction: deposit, balance: 5},{transaction: withdrawal, balance: 0}]
+		end
 	end
 
 end

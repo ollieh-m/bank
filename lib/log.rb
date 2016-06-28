@@ -4,8 +4,16 @@ class Log
 		@log = []
 	end
 
-	def store(transaction,balance)
-		@log.push({transaction: transaction, balance: balance})
+	def store(transaction)
+		@log.push(transaction)
+	end
+
+	def calculate_balances
+		balance = 0
+		@log.map do |transaction|
+			balance += transaction.amount
+			transaction = {transaction: transaction, balance: balance}
+		end
 	end
 
 	def show
