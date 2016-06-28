@@ -20,7 +20,7 @@ describe Printer do
 	context '#printout' do
 		let(:printout){ printer.printout(array) }
 
-		it 'uses keys from the first hash in the reformatted array as headers' do
+		it 'uses keys from the first hash in the reformatted array as the header' do
 			match = printout =~ /date \|\| credit \|\| debit \|\| balance/
 			expect(match).to eq 0
 		end

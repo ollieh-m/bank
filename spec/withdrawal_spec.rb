@@ -10,7 +10,6 @@ describe Withdrawal do
 	end
 
 	context 'On initialization' do
-
 		it 'stores the current date and time' do
 			expect(withdrawal_one.date).to eq :this_moment
 		end
@@ -22,7 +21,6 @@ describe Withdrawal do
 		it 'stores a different amount passed in' do
 			expect(withdrawal_two.amount).to eq -2
 		end
-
 	end
 
 end

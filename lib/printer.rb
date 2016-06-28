@@ -33,7 +33,7 @@ class Printer
 			row.each_value{ |value| body << "#{value} " }
 			body << "\n"
 		end
-		body = body.gsub(/ $/,"").gsub(/ /," || ").gsub(/  /,' ')
+		body = body.gsub(/ $/,"").gsub(/ /," || ").gsub(/  /," ").gsub(/\n$/,"")
 	end
 
 	def datify(date)

@@ -10,7 +10,6 @@ describe Deposit do
 	end
 
 	context 'On initialization' do
-
 		it 'stores the current date and time' do
 			expect(deposit_one.date).to eq :this_moment
 		end
@@ -22,7 +21,6 @@ describe Deposit do
 		it 'stores a different amount passed in' do
 			expect(deposit_two.amount).to eq 2
 		end
-
 	end
 
 end

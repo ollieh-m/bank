@@ -1,26 +1,20 @@
-# require_relative '../lib/account.rb'
-# require_relative '../lib/balance.rb'
-# require_relative '../lib/deposit.rb'
-# require_relative '../lib/withdrawal.rb'
-# require_relative '../lib/printer.rb'
+require_relative '../lib/account.rb'
+require_relative '../lib/deposit.rb'
+require_relative '../lib/withdrawal.rb'
+require_relative '../lib/printer.rb'
 
-# puts "Initialize account with a balance..."
-# balance = Balance.new
-# account = Account.new(balance)
-# puts "Current balance is #{balance.now}"
-# puts
-# puts "Deposit 5"
-# deposit = Deposit.new(amount: 5)
-# account.transaction(deposit)
-# puts "Current balance is #{balance.now}"
-# puts
-# puts "Withdraw 3"
-# withdrawal = Withdrawal.new(amount: 3)
-# account.transaction(withdrawal)
-# puts "Current balance is #{balance.now}"
+describe 'banking' do
 
-# account = Account.new
-# account.transaction(deposit)
-# account.transaction(deposit)
-# account.transaction(withdrawal)
-# puts account.print_statement
+	let(:account){ Account.new }
+
+	it 'returns the correct string as a bank statement' do
+		allow(DateTime).to receive(:now).and_return(DateTime.new(2016,6,28))
+		deposit = Deposit.new(amount: 5)
+		withdrawal = Withdrawal.new(amount: 3)
+		account.transaction(deposit)
+		account.transaction(withdrawal)
+		statement = account.print_statement
+		expect(statement).to eq "date || credit || debit || balance\n28-06-2016 || || 3.00 || 2.00\n28-06-2016 || 5.00 || || 5.00"
+	end
+
+end

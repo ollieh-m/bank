@@ -8,16 +8,13 @@ class Log
 		@log.push(transaction)
 	end
 
-	def calculate_balances
+	def add_balances
 		balance = 0
-		@log.map do |transaction|
+		array = @log.map do |transaction|
 			balance += transaction.amount
 			transaction = {transaction: transaction, balance: balance}
 		end
-	end
-
-	def show
-		@log
+		array.reverse
 	end
 
 end
