@@ -5,11 +5,8 @@ class Log
 	end
 
 	def store(date,type,amount,balance)
-		if type == :credit
-			@log.push({date: date, credit: true, debit: false, amount: amount, balance: balance})
-		else
-			@log.push({date: date, credit: false, debit: true, amount: amount, balance: balance})
-		end
+		@log.push({date: date, credit: false, debit: false, amount: amount, balance: balance})
+		type == :credit ? @log.last[:credit] = true : @log.last[:debit] = true
 	end
 
 	def show

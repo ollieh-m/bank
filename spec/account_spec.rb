@@ -2,21 +2,34 @@ require 'account'
 
 describe Account do
 
-	let(:balance){ spy(:balance) }
-	let(:deposit){ double(:deposit, amount: 1) }
-	let(:withdrawal){ double(:withdrawal, amount: -1) }
-	subject(:account){described_class.new(balance)}
+	let(:log){ spy(:log) }
+
+	let(:balance){ double(:balance, update: nil, now: :dummy_balance)}
+	
+	let(:deposit){ double(:deposit, date: :dummy_date, amount: 1) }
+	let(:withdrawal){ double(:withdrawal, date: :dummy_date, amount: -1) }
+
+	subject(:account){described_class.new(balance,log)}
 
 	context 'Making a transaction' do
 
-		it 'instructs the balance to update itself using the deposit amount' do
-			account.transaction(deposit)
-			expect(balance).to have_received(:update).with(1)
+		context 'and updating the balance' do
+			it '- instructs the balance to update itself using the deposit amount' do
+				expect(balance).to receive(:update).with(1)
+				account.transaction(deposit)
+			end
+
+			it '- instructs the balance to update itself using the withdrawal amount' do
+				expect(balance).to receive(:update).with(-1)
+				account.transaction(withdrawal)
+			end
 		end
 
-		it 'instructs the balance to update itself using the withdrawal amount' do
-			account.transaction(withdrawal)
-			expect(balance).to have_received(:update).with(-1)
+		context 'and storing it in the log' do
+			it '- instructs the log to store the date, type, amount and new balance' do
+				account.transaction(deposit)
+				expect(log).to have_received(:store).with(:dummy_date,:credit,1,:dummy_balance)
+			end
 		end
 
 	end
