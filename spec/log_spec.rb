@@ -13,12 +13,12 @@ describe Log do
 		
 		it 'adds a hash to the logged array with all the deposit details passed in' do
 			log.store(deposit,balance_now)
-			expect(log.show).to eq [{date: :dummy_date, credit: 5, debit: 0, balance: balance_now}]
+			expect(log.show).to eq [{transaction: deposit, balance: balance_now}]
 		end
 
 		it 'adds a hash to the logged array with all the withdrawal details passed in' do
 			log.store(withdrawal,balance_now)
-			expect(log.show).to eq [{date: :dummy_date, credit: 0, debit: 5, balance: balance_now}]
+			expect(log.show).to eq [{transaction: withdrawal, balance: balance_now}]
 		end
 
 	end
