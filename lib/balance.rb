@@ -8,4 +8,8 @@ class Balance
 		@balance
 	end
 
+	def update(amount)
+		@balance += amount
+	end
+
 end
