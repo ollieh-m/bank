@@ -6,8 +6,8 @@ class Account
 		@balance = balance
 	end
 
-	def transaction(deposit_object)
-		@balance.update(deposit_object.amount)
+	def transaction(deposit_or_withdrawal)
+		@balance.update(deposit_or_withdrawal.amount)
 	end
 
 end
