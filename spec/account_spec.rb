@@ -10,7 +10,7 @@ describe Account do
 
 		it 'instructs the balance to update itself using the deposit amount' do
 			account.transaction(deposit)
-			expect(balance).to have_received(:add).with(1)
+			expect(balance).to have_received(:update).with(1)
 		end
 
 	end
