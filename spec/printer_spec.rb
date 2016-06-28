@@ -9,14 +9,12 @@ describe Printer do
 								{transaction: withdrawal, balance: 10}] }
 	subject(:printer){ described_class.new }
 
-	let(:printout){ printer.printout(array) }
-
 	context '#reformat' do
 
 		it 'creates a new array of hashes with the correct keys and values' do
-			array = printer.reformat(array)
-			expect(array).to eq [{date: '03-02-2001', credit: '5.00', debit: '', balance: '10.00'},
-													 {date: '03-02-2001', credit: '', debit: '5.00', balance: '10.00'}]
+			reformatted_array = printer.reformat(array)
+			expect(reformatted_array).to eq [{date: '03-02-2001', credit: '5.00', debit: '', balance: '10.00'},
+													 						 {date: '03-02-2001', credit: '', debit: '5.00', balance: '10.00'}]
 		end
 
 	end

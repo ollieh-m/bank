@@ -9,6 +9,15 @@ class Printer
 		header + "\n" + body
 	end
 
+	def reformat(array)
+		array.map do |hash|
+			hash = {date: datify(hash[:transaction].date),
+							credit: hash[:transaction].amount > 0 ? numberfy(hash[:transaction].amount) : "",
+							debit: hash[:transaction].amount < 0 ? numberfy(hash[:transaction].amount * -1) : "",
+							balance: numberfy(hash[:balance])}
+		end
+	end
+
 	private
 
 	def header(hash)
@@ -26,12 +35,12 @@ class Printer
 		body = body.gsub(/ $/,"").gsub(/ /," || ").gsub(/  /,' ')
 	end
 
-	def reformat(row)
-		row[:date] = row[:date].strftime("%d-%m-%Y")
-		row[:credit] = row[:credit] > 0 ? "#{row[:credit]}.00" : ""
-		row[:debit] = row[:debit] > 0 ? "#{row[:debit]}.00" : ""
-		row[:balance] = "#{row[:balance]}.00"
-		row
+	def datify(date)
+		date.strftime("%d-%m-%Y")
+	end
+
+	def numberfy(amount)
+		"#{amount}.00"
 	end
 
 end
