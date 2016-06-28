@@ -3,7 +3,7 @@ require 'printer'
 describe Printer do
 
 	let(:deposit){ double(:deposit, date: DateTime.new(2001,2,3), amount: 5) }
-	let(:withdrawal){ double(:withdrawal, date: DateTime.new(2001,2,3), amount: -5) }
+	let(:withdrawal){ double(:withdrawal, date: DateTime.new(2001,2,4), amount: -5) }
 
 	let(:array){ [{transaction: deposit, balance: 10},
 								{transaction: withdrawal, balance: 10}] }
@@ -13,7 +13,7 @@ describe Printer do
 		it 'creates a new array of hashes with the correct keys and values' do
 			reformatted_array = printer.reformat(array)
 			expect(reformatted_array).to eq [{date: '03-02-2001', credit: '5.00', debit: '', balance: '10.00'},
-													 						 {date: '03-02-2001', credit: '', debit: '5.00', balance: '10.00'}]
+													 						 {date: '04-02-2001', credit: '', debit: '5.00', balance: '10.00'}]
 		end
 	end
 

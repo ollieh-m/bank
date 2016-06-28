@@ -4,7 +4,8 @@ class Printer
 	end
 
 	def printout(array)
-		header = header(array.first)
+		array = reformat(array)
+		header = header(array)
 		body = body(array)
 		header + "\n" + body
 	end
@@ -20,16 +21,16 @@ class Printer
 
 	private
 
-	def header(hash)
+	def header(array)
 		header = ""
-		hash.each_key{ |key| header << "#{key} " }
+		array.first.each_key{ |key| header << "#{key} " }
 		header = header.gsub(/ $/,"").gsub(/ /," || ")
 	end
 
 	def body(array)
 		body = ""
 		array.each do |row|
-			reformat(row).each_value{ |value| body << "#{value} " }
+			row.each_value{ |value| body << "#{value} " }
 			body << "\n"
 		end
 		body = body.gsub(/ $/,"").gsub(/ /," || ").gsub(/  /,' ')
