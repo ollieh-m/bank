@@ -26,9 +26,13 @@ describe Account do
 		end
 
 		context 'and storing it in the log' do
-			it '- instructs the log to store the date, type, amount and new balance' do
+			it '- instructs the log to store deposit date, type, amount and new balance' do
 				account.transaction(deposit)
 				expect(log).to have_received(:store).with(:dummy_date,:credit,1,:dummy_balance)
+			end
+			it '- instructs the log to store withdrawal date, type, amount and new balance' do
+				account.transaction(withdrawal)
+				expect(log).to have_received(:store).with(:dummy_date,:debit,1,:dummy_balance)
 			end
 		end
 
