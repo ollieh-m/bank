@@ -1,5 +1,3 @@
-require_relative 'log.rb'
-
 class Account
 
 	def initialize(log: Log.new, printer: Printer.new, overdraft: 0)
