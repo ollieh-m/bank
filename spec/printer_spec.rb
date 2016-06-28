@@ -8,7 +8,7 @@ describe Printer do
 	context '#print' do
 		it 'uses keys from the first hash in an array as headers' do
 			printout = printer.printout(array)
-			match = printout =~ /date || credit || debit || balance/
+			match = printout =~ /date \|\| credit \|\| debit \|\| balance/
 			expect(match).to eq 0
 		end
 	end
