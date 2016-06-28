@@ -6,7 +6,7 @@ class Printer
 	def printout(array)
 		header = header(array.first)
 		body = body(array)
-		header + "\n" + body			
+		header + "\n" + body
 	end
 
 	private
