@@ -18,6 +18,3 @@ puts "Withdraw 3"
 withdrawal = Withdrawal.new(amount: 3)
 account.transaction(withdrawal)
 puts "Current balance is #{balance.now}"
-
-printer = Printer.new
-printer.printout([{date: DateTime.new(2001,2,3), credit: 5, debit: 0, balance: 10}])
