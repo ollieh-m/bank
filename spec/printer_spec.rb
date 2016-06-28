@@ -15,7 +15,7 @@ describe Printer do
 		end
 		it 'adds the values from each hash to a new line on the printout' do
 			row = printout.split("\n")[1]
-			expect(row).to eq '02-03-2001 || 5.00 || || 10.00'
+			expect(row).to eq '03-02-2001 || 5.00 || || 10.00'
 		end
 	end
 
