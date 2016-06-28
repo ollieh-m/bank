@@ -15,6 +15,10 @@ describe Balance do
 			balance.update(1)
 			expect(balance.now).to eq 1
 		end
+		it 'subtracts the amount passed in if the amount is negative' do
+			balance.update(-1)
+			expect(balance.now).to eq -1
+		end
 	end
 
 end
