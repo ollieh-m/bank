@@ -18,3 +18,9 @@ puts "Withdraw 3"
 withdrawal = Withdrawal.new(amount: 3)
 account.transaction(withdrawal)
 puts "Current balance is #{balance.now}"
+
+account = Account.new
+account.transaction(deposit)
+account.transaction(deposit)
+account.transaction(withdrawal)
+puts account.print_statement

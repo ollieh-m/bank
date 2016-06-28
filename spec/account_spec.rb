@@ -34,14 +34,10 @@ describe Account do
 	end
 
 	context 'Printing a statement' do
-
 		it 'instructs the printer to print a statement' do
 			account.print_statement
 			expect(printer).to have_received(:printout).with(:dummy_array)
 		end
-
 	end
-
-
 
 end
