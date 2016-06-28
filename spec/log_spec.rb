@@ -15,4 +15,18 @@ describe Log do
 		end
 	end
 
+	context '#current_balance' do
+		it 'calculates the current balance' do
+			log.store(deposit)
+			log.store(withdrawal)
+			expect(log.current_balance).to eq 0
+		end
+		it 'calculates a different balance' do
+			log.store(deposit)
+			log.store(deposit)
+			log.store(withdrawal)
+			expect(log.current_balance).to eq 5
+		end
+	end
+
 end

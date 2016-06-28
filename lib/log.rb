@@ -17,4 +17,10 @@ class Log
 		array.reverse
 	end
 
+	def current_balance
+		balance = 0
+		@log.each{|transaction| balance += transaction.amount}
+		balance
+	end
+
 end
