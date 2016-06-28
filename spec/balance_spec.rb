@@ -10,7 +10,7 @@ describe Balance do
 		end
 	end
 
-	context ' #update' do
+	context '#update' do
 		it 'adds the amount passed in if the amount is positive' do
 			balance.update(1)
 			expect(balance.now).to eq 1
